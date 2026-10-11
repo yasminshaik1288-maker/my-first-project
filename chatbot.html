@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My AI Chatbot</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf2ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .chat-container {
+            width: 350px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #b0bec5;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        #chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        input {
+            width: 68%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .user {
+            color: #2563eb;
+            margin: 10px 0;
+        }
+
+        .bot {
+            color: #16803d;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+
+        <h2>🤖 My AI Chatbot</h2>
+
+        <div id="chat-box">
+            <p class="bot">
+                Bot: Hello! Ask me something.
+            </p>
+        </div>
+
+        <input
+            type="text"
+            id="user-input"
+            placeholder="Type your message..."
+        >
+
+        <button onclick="sendMessage()">Send</button>
+
+    </div>
+
+    <script>
+        function sendMessage() {
+
+            let input = document.getElementById("user-input");
+            let message = input.value.trim();
+
+            if (message === "") {
+                return;
+            }
+
+            let chatBox = document.getElementById("chat-box");
+
+            chatBox.innerHTML +=
+                "<p class='user'>You: " + message + "</p>";
+
+            let reply;
+
+            if (message.toLowerCase().includes("hi")) {
+                reply = "Hello! How can I help you?";
+            }
+            else if (message.toLowerCase().includes("java")) {
+                reply = "Java is a programming language.";
+            }
+            else if (message.toLowerCase().includes("ai")) {
+                reply = "AI stands for Artificial Intelligence.";
+            }
+            else {
+                reply = "I am a simple chatbot. I don't know that answer yet!";
+            }
+
+            chatBox.innerHTML +=
+                "<p class='bot'>Bot: " + reply + "</p>";
+
+            input.value = "";
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+</body>
+</html>
